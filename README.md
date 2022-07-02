@@ -61,7 +61,10 @@
 - ods_dim_member_alipay为支付宝小程序联名会员相关主数据表，包含手机号（mobile）作为核心要素，淘宝ID（taobao_id）和邮箱地址（email_address）作为辅助要素；
 - ods_dim_member_wechat为微信公众号的联名会员相关主数据表，包含手机号（mobile）作为核心要素，微信Open ID（open_id）和邮箱地址（email_address）作为辅助要素；
 - ods_dim_user_update为增量更新临时表，仅记录本批次待更新的用户信息；
-ods_dim_user为用户主数据表，包含1）用户One ID（user_uuid）， 2）属性信息，例如：手机号（mobile）、淘宝ID（taobao_id）、微信Open ID（open_id）、邮箱地址（email_address）、性别（gender）、城市（city）和AIPL转化状态（status）等， 3）拉链日期区间信息：START_DATE表示该条记录的生命周期开始生效时间，END_DATE表示该条记录的生命周期结束生效时间；
+- ods_dim_user为用户主数据表，包含：
+  - 用户One ID（user_uuid）
+  - 属性信息，例如：手机号（mobile）、淘宝ID（taobao_id）、微信Open ID（open_id）、邮箱地址（email_address）、性别（gender）、城市（city）和AIPL转化状态（status）等
+  - 拉链日期区间信息：START_DATE表示该条记录的生命周期开始生效时间，END_DATE表示该条记录的生命周期结束生效时间；
 
 ## 2.2.2 用户主数据表One ID整合模型流程
 
@@ -74,7 +77,7 @@ ods_dim_user为用户主数据表，包含1）用户One ID（user_uuid）， 2�
 
 ## 2.2.3 用户One ID数据更新场景场景说明
 
-常规数据拉链场景：
+**常规数据拉链场景：**
 
 ![图5 通过手机号匹配完成u001用户的常规数据拉链场景](https://user-images.githubusercontent.com/4908959/177004430-dccaaa4d-f80a-4902-8ac0-2cd999ff6e10.png)
 
@@ -84,7 +87,7 @@ ods_dim_user为用户主数据表，包含1）用户One ID（user_uuid）， 2�
   - UUID为u001、手机号为183xxx、支部宝id为null、开始日期为2010年01月01日、结束日期为2010年01月02日闭链状态的历史数据，
   - UUID为u004、手机号为183xxx、支部宝id为20880001、开始日期为2010年01月02日、结束日期为9999年12月31日开链状态的最新数据。
 
-新型数据拉链场景：
+**新型数据拉链场景：**
 
 ![图6 通过手机号匹配完成u001和u002用户合并的新型数据拉链场景](https://user-images.githubusercontent.com/4908959/177004496-87bdad70-dc24-455d-b8a6-d20c5ac24733.png)
 
