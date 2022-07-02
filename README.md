@@ -49,12 +49,12 @@
 ![图3 用户主数据表One ID双层数据拉链整合流程图](图3 用户主数据表One ID双层数据拉链整合流程图.png "图3 用户主数据表One ID双层数据拉链整合流程图")
 
 以上是以用户主数据表为例来展示One ID整合模型的流程图，其中：
-- 1.第一层数据拉链模型，用于在CRM会员系统、支付宝小程序和微信公众号的各个源系统中采集源数据（ods表），并经过集成之后形成各自的拉链表（dw表），并标记当前批次的新数据（END_DATE为9999/12/31）；
-- 2.第二层数据拉链模型，用于融合贯通来自CRM会员系统、支付宝小程序和微信公众号的用户数据，形成用户One ID的整合数据拉链模型表（dw_dim_user）。
-- 3.核心要素（Primary Element）是指认定为具备身份唯一识别信息的要素，本方案中是以手机号（mobile）为例；
-- 4.辅助要素（Secondary Element）是指不具备唯一身份识别信息，但可以提供辅助身份识别信息的要素；
-- 5.ods_dim_member为CRM会员系统的会员相关主数据表，包含手机号（mobile）作为核心要素，邮箱地址（email_address）和姓名（user_name）作为辅助要素；
-- 6.ods_dim_member_alipay为支付宝小程序联名会员相关主数据表，包含手机号（mobile）作为核心要素，淘宝ID（taobao_id）和邮箱地址（email_address）作为辅助要素；
-- 7.ods_dim_member_wechat为微信公众号的联名会员相关主数据表，包含手机号（mobile）作为核心要素，微信Open ID（open_id）和邮箱地址（email_address）作为辅助要素；
-- 8.ods_dim_user_update为增量更新临时表，仅记录本批次待更新的用户信息；
+- 第一层数据拉链模型，用于在CRM会员系统、支付宝小程序和微信公众号的各个源系统中采集源数据（ods表），并经过集成之后形成各自的拉链表（dw表），并标记当前批次的新数据（END_DATE为9999/12/31）；
+- 第二层数据拉链模型，用于融合贯通来自CRM会员系统、支付宝小程序和微信公众号的用户数据，形成用户One ID的整合数据拉链模型表（dw_dim_user）。
+- 核心要素（Primary Element）是指认定为具备身份唯一识别信息的要素，本方案中是以手机号（mobile）为例；
+- 辅助要素（Secondary Element）是指不具备唯一身份识别信息，但可以提供辅助身份识别信息的要素；
+- ods_dim_member为CRM会员系统的会员相关主数据表，包含手机号（mobile）作为核心要素，邮箱地址（email_address）和姓名（user_name）作为辅助要素；
+- ods_dim_member_alipay为支付宝小程序联名会员相关主数据表，包含手机号（mobile）作为核心要素，淘宝ID（taobao_id）和邮箱地址（email_address）作为辅助要素；
+- ods_dim_member_wechat为微信公众号的联名会员相关主数据表，包含手机号（mobile）作为核心要素，微信Open ID（open_id）和邮箱地址（email_address）作为辅助要素；
+- ods_dim_user_update为增量更新临时表，仅记录本批次待更新的用户信息；
 ods_dim_user为用户主数据表，包含1）用户One ID（user_uuid）， 2）属性信息，例如：手机号（mobile）、淘宝ID（taobao_id）、微信Open ID（open_id）、邮箱地址（email_address）、性别（gender）、城市（city）和AIPL转化状态（status）等， 3）拉链日期区间信息：START_DATE表示该条记录的生命周期开始生效时间，END_DATE表示该条记录的生命周期结束生效时间；
